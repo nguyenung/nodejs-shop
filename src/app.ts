@@ -3,6 +3,7 @@ import {adminRoutes, webRoutes} from "./routes";
 import { connectMongoDB } from './database'
 import dotenv from "dotenv";
 import path from "path";
+import { engine } from 'express-handlebars';
 
 dotenv.config();
 
@@ -18,12 +19,15 @@ class App {
     }
 
     private setupViewEngine = (): void => {
-        this.app.set('view engine', 'pug');
+        this.app.engine('.hbs', engine({
+            extname: '.hbs',
+        }));
+        this.app.set('view engine', '.hbs');
         this.app.set('views', path.join(__dirname, 'views'));
     }
 
     private setupStatic = (): void => {
-        this.app.use(express.static('./../public'));
+        this.app.use(express.static(path.join(__dirname, '../public')));
     }
 
     private configureMiddlewares = (): void => {
