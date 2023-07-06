@@ -1,6 +1,7 @@
-const { src, dest } = require('gulp');
+import pkg from 'gulp';
+const { src, dest } = pkg;
 
-exports.copyViews = function () {
+export function copyViews() {
     return src('src/views/**/*')
         .pipe(dest('dist/views'));
 }

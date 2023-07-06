@@ -1,1 +1,1 @@
-export * from './mongodb.conf'
+export * from './mongodb.conf.js'

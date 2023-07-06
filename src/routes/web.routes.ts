@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { homePage } from "../controllers/web/Home.controller";
-import { shop, productDetail, cart, checkout } from "../controllers/web/Shop.controller";
-import { myAccount, wishList } from "../controllers/web/User.controller";
-import { about, contactUs, gallery } from "../controllers/web/Page.controller";
+import { homePage } from "../controllers/web/Home.controller.js";
+import { shop, productDetail, cart, checkout } from "../controllers/web/Shop.controller.js";
+import { myAccount, wishList } from "../controllers/web/User.controller.js";
+import { about, contactUs, gallery } from "../controllers/web/Page.controller.js";
 
 const router = Router();
 

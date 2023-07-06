@@ -1,10 +1,12 @@
 import express, { Express } from 'express';
-import {adminRoutes, webRoutes} from "./routes";
-import { connectMongoDB } from './database'
+import {adminRoutes, webRoutes} from "./routes/index.js";
+import { connectMongoDB } from './database/index.js'
 import dotenv from "dotenv";
 import path from "path";
 import { engine } from 'express-handlebars';
+import * as url from 'url';
 
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 dotenv.config();
 
 class App {
