@@ -1,17 +1,17 @@
 import { Schema, model } from "mongoose";
 
-interface IUser {
-    name: string;
+interface ICustomer {
     email: string;
+    name: string;
     password: string;
 }
 
-const userSchema = new Schema<IUser>({
-    name: {
+const customerSchema = new Schema<ICustomer>({
+    email: {
         type: String,
         required: true,
     },
-    email: {
+    name: {
         type: String,
         required: true,
     },
@@ -21,4 +21,4 @@ const userSchema = new Schema<IUser>({
     }
 });
 
-export const User = model<IUser>('User', userSchema);
+export const Customer = model<ICustomer>('Customer', customerSchema);
