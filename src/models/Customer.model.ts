@@ -19,6 +19,6 @@ const customerSchema = new Schema<ICustomer>({
         type: String,
         required: true,
     }
-});
+}, { collection: 'customers' });
 
 export const Customer = model<ICustomer>('Customer', customerSchema);

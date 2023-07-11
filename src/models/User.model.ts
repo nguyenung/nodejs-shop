@@ -19,6 +19,6 @@ const userSchema = new Schema<IUser>({
         type: String,
         required: true,
     }
-});
+}, { collection: 'users' });
 
 export const User = model<IUser>('User', userSchema);

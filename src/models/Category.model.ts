@@ -19,6 +19,6 @@ const categorySchema = new Schema<ICategory>({
         type: String,
         required: true,
     },
-});
+}, { collection: 'categories' });
 
 export const Category = model('Category', categorySchema);

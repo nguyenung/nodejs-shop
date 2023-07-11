@@ -1,10 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 interface IProduct {
     title: string;
     description: string;
     price: number;
     imageUrl: string;
+    category: Types.ObjectId;
 }
 
 const productSchema = new Schema<IProduct>({
@@ -24,6 +25,10 @@ const productSchema = new Schema<IProduct>({
         type: String,
         required: true,
     },
-});
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }
+}, { collection: 'products' });
 
 export const Product = model('Product', productSchema);
