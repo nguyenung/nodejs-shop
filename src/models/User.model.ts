@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
+import { BaseModel, IBaseModel } from "./base/Base.model.js";
 
-interface IUser {
+interface IUser extends IBaseModel {
     name: string;
     email: string;
     password: string;
@@ -19,6 +20,14 @@ const userSchema = new Schema<IUser>({
         type: String,
         required: true,
     }
-}, { collection: 'users' });
+});
 
-export const User = model<IUser>('User', userSchema);
+class UserModel extends BaseModel<IUser> {
+    constructor() {
+        super('User', userSchema, 'users');
+    }
+}
+
+const User = new UserModel().model;
+
+export { User };

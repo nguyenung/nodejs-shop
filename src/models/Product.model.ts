@@ -1,6 +1,7 @@
 import { Schema, model, Types } from "mongoose";
+import { BaseModel, IBaseModel } from "./base/Base.model.js";
 
-interface IProduct {
+interface IProduct extends IBaseModel {
     title: string;
     description: string;
     price: number;
@@ -29,6 +30,14 @@ const productSchema = new Schema<IProduct>({
         type: Schema.Types.ObjectId,
         ref: 'Category'
     }
-}, { collection: 'products' });
+});
 
-export const Product = model('Product', productSchema);
+class ProductModel extends BaseModel<IProduct> {
+    constructor() {
+        super('Product', productSchema, 'products');
+    }
+}
+
+const Product = new ProductModel().model;
+
+export { Product };

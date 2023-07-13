@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+import { Schema } from "mongoose";
+import { BaseModel, IBaseModel } from "./base/Base.model.js";
 
-interface ICategory {
+interface ICategory extends IBaseModel {
     title: string;
     description: string;
     imageUrl: string;
@@ -19,6 +20,14 @@ const categorySchema = new Schema<ICategory>({
         type: String,
         required: true,
     },
-}, { collection: 'categories' });
+});
 
-export const Category = model('Category', categorySchema);
+class CategoryModel extends BaseModel<ICategory> {
+    constructor() {
+        super('Category', categorySchema, 'categories');
+    }
+}
+
+const Category = new CategoryModel().model;
+
+export { Category };

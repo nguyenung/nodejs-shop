@@ -1,6 +1,7 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, Types } from "mongoose";
+import { BaseModel, IBaseModel } from "./base/Base.model.js";
 
-interface ICartItem {
+interface ICartItem extends IBaseModel {
     cart: Types.ObjectId;
     product: Types.ObjectId;
     quantity: number;
@@ -12,7 +13,14 @@ const cartItemSchema = new Schema<ICartItem>({
     product: { type: Schema.Types.ObjectId, ref: 'Product' },
     quantity: { type: Number, required: true },
     price: { type: Number, required: true }
-}, { collection: 'cart_items' }
-);
+});
 
-export const CartItem = model<ICartItem>('CartItem', cartItemSchema);
+class CartItemModel extends BaseModel<ICartItem> {
+    constructor() {
+        super('CartItem', cartItemSchema, 'cart_items');
+    }
+}
+
+const CartItem = new CartItemModel().model;
+
+export { CartItem };
